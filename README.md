@@ -10,6 +10,7 @@ My personal Arch Linux dotfiles for a Hyprland setup with Tokyo Night theme.
 - **Notifications**: Mako
 - **Wallpaper**: Wpaperd
 - **Lock screen**: Hyprlock
+- **FastFetch**: Fastfetch
 
 ## Install
 ```bash
@@ -20,4 +21,4 @@ stow hypr quickshell mako wpaperd kitty nvim fastfetch bash
 
 ## Note
 These configs were built with the help of AI (Claude by Anthropic). 
-The setup, decisions, and customization are my own — AI was used as a tool to speed up the process.
+The setup, decisions, and customization are my own, AI was used as a tool to speed up the process.
