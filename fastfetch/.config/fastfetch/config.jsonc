@@ -1,0 +1,96 @@
+{
+    "logo": {
+        "source": "arch",
+        "type": "builtin",
+        "height": 9,
+        "padding": {
+            "top": 0,
+            "bottom": 5
+        }
+    },
+    "display": {
+        "separator": "- "
+    },
+    "modules": [
+        "break",
+        {
+            "type": "custom",
+            "format": "\u001b[0m──────────────────────────────────────────────────────────────────────────────────────────────────────────────────"
+        },
+        "break",
+        {
+            "type": "title",
+            "keyWidth": 30
+        },
+        "break",
+        {
+            "type": "os",
+            "key": " ",
+            "keyColor": "34"
+        },
+        {
+            "type": "kernel",
+            "key": " ",
+            "keyColor": "34"
+        },
+        {
+            "type": "packages",
+            "format": "{} (pacman)",
+            "key": " ",
+            "keyColor": "34"
+        },
+        {
+            "type": "shell",
+            "key": " ",
+            "keyColor": "34"
+        },
+        {
+            "type": "terminal",
+            "key": " ",
+            "keyColor": "34"
+        },
+        {
+            "type": "wm",
+            "key": " ",
+            "keyColor": "34"
+        },
+        {
+            "type": "cursor",
+            "key": " ",
+            "keyColor": "34"
+        },
+        {
+            "type": "terminalfont",
+            "key": " ",
+            "keyColor": "34"
+        },
+        {
+            "type": "uptime",
+            "key": " ",
+            "keyColor": "34"
+        },
+        {
+            "type": "datetime",
+            "format": "{1}-{3}-{11}",
+            "key": " ",
+            "keyColor": "34"
+        },
+        "break",
+        {
+            "type": "user",
+            "key": " ",
+            "keyColor": "34"
+        },
+        {
+            "type": "hostname",
+            "key": " ",
+            "keyColor": "34"
+        },
+        {
+            "type": "custom",
+            "format": "\u001b[0m──────────────────────────────────────────────────────────────────────────────────────────────────────────────────"
+        },
+        "break",
+        "break"
+    ]
+}
