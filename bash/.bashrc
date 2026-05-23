@@ -21,3 +21,5 @@ export PATH="$PATH:$HOME/.dotnet/tools"
 if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" = "1" ]; then
 	exec uwsm start hyprland.desktop
 fi
+
+fastfetch
