@@ -5,7 +5,6 @@ return {
       cs = { "csharpier" },
       html = { "prettier" },
       css = { "prettier" },
-      razor = { "prettier" },
     },
   },
 }
