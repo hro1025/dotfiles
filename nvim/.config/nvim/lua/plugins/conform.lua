@@ -3,6 +3,9 @@ return {
   opts = {
     formatters_by_ft = {
       cs = { "csharpier" },
+      html = { "prettier" },
+      css = { "prettier" },
+      razor = { "prettier" },
     },
   },
 }
