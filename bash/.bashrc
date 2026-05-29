@@ -19,7 +19,10 @@ export LS_COLORS="di=38;2;122;162;247:ln=38;2;125;207;255:so=38;2;187;154;247:pi
 export PATH="$PATH:$HOME/.dotnet/tools"
 
 if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" = "1" ]; then
-	exec uwsm start hyprland.desktop
+	exec start-hyprland
 fi
 
 fastfetch
+export DOTNET_ROOT=$HOME/.dotnet
+export PATH=$PATH:$HOME/.dotnet:$HOME/.dotnet/tools
+export PATH="$PATH:/home/roan/.local/bin"

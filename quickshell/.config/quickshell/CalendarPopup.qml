@@ -21,9 +21,10 @@ Window {
         return new Date(year, month + 1, 0).getDate()
     }
 
-    function firstDayOfMonth(month, year) {
-        return new Date(year, month, 1).getDay()
-    }
+function firstDayOfMonth(month, year) {
+    let day = new Date(year, month, 1).getDay()
+    return (day + 6) % 7
+}
 
     Rectangle {
         anchors.fill: parent
@@ -99,7 +100,7 @@ Window {
                 spacing: 4
 
                 Repeater {
-                    model: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
+                    model: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"]
                     Text {
                         required property string modelData
                         text: modelData
@@ -152,21 +153,6 @@ Window {
                 }
             }
 
-            // Current time
-            Text {
-                Layout.alignment: Qt.AlignHCenter
-                text: Qt.formatTime(new Date(), "hh:mm:ss")
-                color: "#565f89"
-                font.pixelSize: 12
-                font.family: "Maple Mono NF"
-
-                Timer {
-                    interval: 1000
-                    running: true
-                    repeat: true
-                    onTriggered: parent.text = Qt.formatTime(new Date(), "hh:mm:ss")
-                }
-            }
         }
     }
 
