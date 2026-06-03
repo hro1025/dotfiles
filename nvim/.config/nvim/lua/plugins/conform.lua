@@ -4,7 +4,8 @@ return {
     formatters_by_ft = {
       cs = { "csharpier" },
       html = { "prettier" },
-      css = { "prettier" },
+      xaml = { "xmlformatter" },
+      axaml = { "xmlformatter" },
     },
   },
 }
