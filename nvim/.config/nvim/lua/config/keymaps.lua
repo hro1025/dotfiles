@@ -1,6 +1,19 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
-vim.keymap.set("n", "<leader>D", function()
-  Snacks.dashboard.open()
-end, { desc = "Dashboard" })
+-- Save
+vim.keymap.set("n", "<C-s>", "<cmd>w<cr>", { desc = "Save File" })
+vim.keymap.set("i", "<C-s>", "<Esc><cmd>w<cr>", { desc = "Save File" })
+vim.keymap.set("i", "<C-c>", "<Esc><cmd>w<cr>", { desc = "Save and Normal Mode" })
+
+-- Better window navigation
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to lower window" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to upper window" })
+
+-- Clear search highlight
+vim.keymap.set("n", "<Esc>", ":noh<cr>", { desc = "Clear search highlight" })
+
+-- Custom commands
+vim.api.nvim_create_user_command("Home", function()
+  vim.cmd("silent! %bd!")
+  Snacks.dashboard()
+end, {})
