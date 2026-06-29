@@ -28,3 +28,14 @@ vim.api.nvim_create_autocmd("FileType", {
     pcall(vim.treesitter.start)
   end,
 })
+
+-- Treat .axaml and .xaml as XML
+vim.filetype.add({
+  extension = {
+    axaml = "xml",
+    xaml = "xml",
+  },
+})
+
+-- Add Mason binaries to PATH
+vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin:" .. vim.env.PATH
