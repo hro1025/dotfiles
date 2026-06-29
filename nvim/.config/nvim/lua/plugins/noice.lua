@@ -29,5 +29,5 @@ return {
         long_message_to_split = true,
       },
     },
-  }
+  },
 }

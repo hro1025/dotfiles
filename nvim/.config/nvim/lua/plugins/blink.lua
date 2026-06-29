@@ -49,5 +49,5 @@ return {
         ["<C-y>"] = { "select_and_accept" },
       },
     },
-  }
+  },
 }
