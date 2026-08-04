@@ -4,7 +4,6 @@ return {
     opts = {
       formatters_by_ft = {
         cs = { "csharpier" },
-        xml = { "prettier" },
       },
       formatters = {
         prettier = {

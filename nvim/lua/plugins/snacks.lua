@@ -14,9 +14,24 @@ return {
           ██║ ╚████║ ╚████╔╝ ██║██║ ╚═╝ ██║
           ╚═╝  ╚═══╝  ╚═══╝  ╚═╝╚═╝     ╚═╝]],
           keys = {
-            { icon = "", key = "f", desc = "Find File", action = ":lua Snacks.picker.files({ cwd = vim.env.HOME })" },
-            { icon = "󰉋", key = "p", desc = "Projects", action = ":lua Snacks.picker.projects({ confirm = function(picker, item) picker:close() if item then vim.fn.chdir(item.file) vim.cmd('clearjumps') require('persistence').load() end end })" },
-            { icon = "", key = "c", desc = "Config", action = ":lua Snacks.picker.files({ cwd = vim.fn.stdpath('config') })" },
+            {
+              icon = "",
+              key = "f",
+              desc = "Find File",
+              action = ":lua Snacks.picker.files({ cwd = vim.env.HOME })",
+            },
+            {
+              icon = "󰉋",
+              key = "p",
+              desc = "Projects",
+              action = ":lua Snacks.picker.projects({ confirm = function(picker, item) picker:close() if item then vim.fn.chdir(item.file) vim.cmd('clearjumps') require('persistence').load() end end })",
+            },
+            {
+              icon = "",
+              key = "c",
+              desc = "Config",
+              action = ":lua Snacks.picker.files({ cwd = vim.fn.stdpath('config') })",
+            },
             { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
             { icon = "󰗼", key = "q", desc = "Quit", action = ":qa" },
           },
@@ -27,7 +42,7 @@ return {
         },
       },
       explorer = { enabled = true },
-     picker = {
+      picker = {
         enabled = true,
         sources = {
           projects = {
@@ -35,7 +50,7 @@ return {
           },
         },
       },
-        notifier = {
+      notifier = {
         enabled = true,
         timeout = 5000,
         style = "fancy",
@@ -43,8 +58,19 @@ return {
       },
     },
     keys = {
-      { "<space><space>", function() Snacks.picker.files() end },
-      { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
+      {
+        "<space><space>",
+        function()
+          Snacks.picker.files()
+        end,
+      },
+      {
+        "<leader>e",
+        function()
+          Snacks.explorer()
+        end,
+        desc = "File Explorer",
+      },
     },
-  }
+  },
 }
