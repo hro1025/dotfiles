@@ -16,7 +16,7 @@ My personal Arch Linux dotfiles for a Hyprland setup with Tokyo Night theme.
 ```bash
 git clone https://github.com/hro1025/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-stow hypr quickshell mako wpaperd kitty nvim fastfetch bash
+stow -R hypr quickshell mako wpaperd kitty nvim fastfetch bash
 ```
 
 ## Note
