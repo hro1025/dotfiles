@@ -1,1 +1,6 @@
-../../.dotfiles/nvim/.luarc.json
+{
+    "diagnostics.disable": [
+        "undefined-doc-name",
+        "undefined-field"
+    ]
+}
