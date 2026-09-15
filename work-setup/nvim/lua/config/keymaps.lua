@@ -17,3 +17,16 @@ vim.api.nvim_create_user_command("Home", function()
   vim.cmd("silent! %bd!")
   Snacks.dashboard()
 end, {})
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = "*.py",
+  callback = function()
+    local clients = vim.lsp.get_clients({ bufnr = 0 })
+    for _, client in ipairs(clients) do
+      client:stop()
+    end
+    vim.defer_fn(function()
+      vim.cmd("edit")
+    end, 100)
+  end,
+})
