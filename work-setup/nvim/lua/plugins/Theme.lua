@@ -3,7 +3,11 @@ return {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
-    config = function()
+    opts = {
+      dim_inactive = true,
+    },
+    config = function(_, opts)
+      require("tokyonight").setup(opts)
       vim.cmd("colorscheme tokyonight")
     end,
   },

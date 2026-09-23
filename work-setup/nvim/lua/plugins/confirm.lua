@@ -5,8 +5,10 @@ return {
       formatters_by_ft = {
         cs = { "csharpier" },
         rust = { "rustfmt" },
-        javascript = { "prettier" },
-        javascriptreact = { "prettier" },
+        javascript = { "prettierd" },
+        javascriptreact = { "prettierd" },
+        typescript = { "prettierd" },
+        typescriptreact = { "prettierd" },
       },
       formatters = {
         prettier = {
