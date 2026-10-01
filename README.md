@@ -8,10 +8,9 @@ My personal Arch Linux dotfiles for a Hyprland setup with Tokyo Night theme.
 - Bar: Quickshell
 - Terminal: Kitty + Maple Mono NF
 - Editor: Neovim
-- Notifications: Mako
-- Wallpaper: Wpaperd
+- Shell: Bash
 - Lock screen: Hyprlock
-- Fastfetch: Fastfetch
+- Wallpaper: awww (started from the Hyprland config, wallpapers live in `hypr/wallpaper/`)
 
 ## Structure
 
@@ -20,44 +19,48 @@ This repo is organized by machine profile:
 - `work-setup/` — configs for the work laptop
 - `home-setup/` — configs for the home machine (WIP)
 
-Each profile folder contains one package per program, managed with GNU Stow.
+Each profile folder contains one package per program, managed with GNU Stow. Packages are flat: config files sit directly in the package folder, with no nested `.config/` inside the repo.
+
+```
+work-setup/
+├── bash/         -> ~/
+├── hypr/         -> ~/.config/hypr/
+├── kitty/        -> ~/.config/kitty/
+├── nvim/         -> ~/.config/nvim/
+├── quickshell/   -> ~/.config/quickshell/
+└── install.sh
+```
 
 ## Install
 
 ```bash
 git clone https://github.com/hro1025/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
+cd ~/.dotfiles/work-setup
+./install.sh
 ```
 
-Then stow each package. **Note:** targets differ per package depending on its internal layout — some packages nest a `.config/` folder inside themselves, others don't.
+`install.sh` stows `bash` into `~` and every other package into `~/.config/<package>`, creating the target folders if they don't exist. It uses `stow -R`, so it's safe to rerun anytime, for example after adding new files to a package.
+
+To stow a single package manually:
 
 ```bash
-# Packages that nest .config/ internally — target home (~)
-stow -d work-setup -t ~ hypr kitty mako quickshell wpaperd bash
-
-# nvim is flat (no nested .config/) — target ~/.config/nvim directly
-mkdir -p ~/.config/nvim
-stow -d work-setup -t ~/.config/nvim nvim
+cd ~/.dotfiles/work-setup
+mkdir -p ~/.config/kitty
+stow -R -t ~/.config/kitty kitty
 ```
 
-To re-stow after adding new files to a package (e.g. nvim):
-
-```bash
-cd ~/.dotfiles
-stow -R -t ~/.config/nvim work-setup/nvim
-```
+If Stow reports a conflict, a real file already exists at that location. Back it up or remove it, then run the script again.
 
 ## Verifying symlinks
 
-Check that a package landed correctly (should show `->` pointing into `~/.dotfiles/work-setup/...`):
+List every link that points into this repo:
 
 ```bash
-ls -la ~/.config/hypr
-ls -la ~/.config/nvim
+find ~ -maxdepth 3 -type l -lname '*dotfiles/work-setup*' -printf '%p -> %l\n'
 ```
 
-If `stow` reports no errors but the symlink is missing, double-check you're using the right `-t` target for that package — see Install above.
+Find broken links left behind by old layouts:
 
-## Note
-
-These configs were built with the help of AI (Claude by Anthropic). The setup, decisions, and customization are my own; AI was used as a tool to speed up the process.
+```bash
+find ~ ~/.config -maxdepth 1 -xtype l
+```

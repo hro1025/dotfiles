@@ -12,21 +12,21 @@ hl.exec_cmd('gsettings set org.gnome.desktop.interface gtk-theme "adw-gtk3"')
 
 -- Old `exec-once = ...` (only runs once, at Hyprland startup)
 hl.on("hyprland.start", function()
-  hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
-  hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
-  hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
+	hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
+	hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
+	hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
 
-  hl.exec_cmd("hyprctl setcursor hypr-dots-blue 24")
-  hl.exec_cmd("gsettings set org.gnome.desktop.interface cursor-theme 'hypr-dots-blue' &> /dev/null")
-  hl.exec_cmd("gsettings set org.gnome.desktop.interface font-name 'JetBrains Mono Nerd Font 11'")
+	hl.exec_cmd("hyprctl setcursor hypr-dots-blue 24")
+	hl.exec_cmd("gsettings set org.gnome.desktop.interface cursor-theme 'hypr-dots-blue' &> /dev/null")
+	hl.exec_cmd("gsettings set org.gnome.desktop.interface font-name 'JetBrains Mono Nerd Font 11'")
 
-  -- Startup services (old separate AUTOSTART section, folded in here)
-  hl.exec_cmd("waybar")
-  hl.exec_cmd("awww-daemon")
-  hl.exec_cmd("awww img /home/roan/Pictures/wallpaper.jpg")
-  hl.exec_cmd("hyprpm reload")
-  hl.exec_cmd("dunst")
-  hl.exec_cmd("blueman-applet")
+	-- Startup services (old separate AUTOSTART section, folded in here)
+	hl.exec_cmd("waybar")
+	hl.exec_cmd("awww-daemon")
+	hl.exec_cmd("awww img /home/roan/Pictures/wallpaper.jpg")
+	hl.exec_cmd("hyprpm reload")
+	hl.exec_cmd("dunst")
+	hl.exec_cmd("blueman-applet")
 end)
 
 ------------------------------------------------------------------------------------------
@@ -77,20 +77,17 @@ hl.bind(mainMod .. " + K", hl.dsp.exec_cmd(killpanel))
 hl.bind(mainMod .. " + J", hl.dsp.exec_cmd(startpanel))
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd(hyprlock))
 
--- Master layout: move the focused window into the center (master) spot
-hl.bind(mainMod .. " + Return", hl.dsp.layout("swapwithmaster"))
-
 -- Workspace navigation (ALT + 1..9)
 for i = 1, 9 do
-  hl.bind("ALT + " .. i, hl.dsp.focus({ workspace = i }))
+	hl.bind("ALT + " .. i, hl.dsp.focus({ workspace = i }))
 end
 
 -- Move window to workspace
 for i = 1, 5 do
-  hl.bind(mainMod .. " + " .. i, hl.dsp.window.move({ workspace = i }))
+	hl.bind(mainMod .. " + " .. i, hl.dsp.window.move({ workspace = i }))
 end
 for i = 1, 5 do
-  hl.bind("CTRL + SHIFT + " .. i, hl.dsp.window.move({ workspace = i + 5 }))
+	hl.bind("CTRL + SHIFT + " .. i, hl.dsp.window.move({ workspace = i + 5 }))
 end
 
 -- Mouse bindings
@@ -104,56 +101,48 @@ hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 ------------------------------------------------------------------------------------------
 
 hl.config({
-  general = {
-    gaps_in = 0,
-    gaps_out = 0,
-    border_size = 1,
-    col = {
-      -- gradient colors need a structured table, not a single string, since 0.55+
-      active_border = { colors = { "rgba(89b4faff)", "rgba(89b4faff)" }, angle = 45 },
-      inactive_border = "rgba(00000000)",
-    },
-    resize_on_border = false,
-    allow_tearing = false,
-    layout = "master", -- was "dwindle"
-  },
+	general = {
+		gaps_in = 0,
+		gaps_out = 0,
+		border_size = 1,
+		col = {
+			-- gradient colors need a structured table, not a single string, since 0.55+
+			active_border = { colors = { "rgba(89b4faff)", "rgba(89b4faff)" }, angle = 45 },
+			inactive_border = "rgba(00000000)",
+		},
+		resize_on_border = false,
+		allow_tearing = false,
+		layout = "dwindle",
+	},
 
-  decoration = {
-    rounding = 2,
-    active_opacity = 1.0,
-    inactive_opacity = 1.0,
-    shadow = {
-      enabled = false,
-      range = 25,
-      render_power = 1000,
-      color = "rgba(89b4faff)",
-      color_inactive = "rgba(00000000)",
-    },
-    blur = {
-      enabled = true,
-      size = 1,
-      passes = 5,
-      vibrancy = 0.1696,
-      new_optimizations = true,
-    },
-  },
+	decoration = {
+		rounding = 2,
+		active_opacity = 1.0,
+		inactive_opacity = 1.0,
+		shadow = {
+			enabled = false,
+			range = 25,
+			render_power = 1000,
+			color = "rgba(89b4faff)",
+			color_inactive = "rgba(00000000)",
+		},
+		blur = {
+			enabled = true,
+			size = 1,
+			passes = 5,
+			vibrancy = 0.1696,
+			new_optimizations = true,
+		},
+	},
 
-  -- Kept so switching back to dwindle later just means changing `layout`.
-  dwindle = {
-    force_split = 2,
-    preserve_split = true,
-  },
+	dwindle = {
+		force_split = 2,
+		preserve_split = true,
+	},
 
-  master = {
-    orientation = "center", -- master area in the middle
-    new_status = "master", -- new windows open in the center
-    slave_count_for_center_master = 0, -- always center, even a single window
-    mfact = 0.5, -- center window takes half the screen width
-  },
-
-  opengl = {
-    nvidia_anti_flicker = true,
-  },
+	opengl = {
+		nvidia_anti_flicker = true,
+	},
 })
 
 -- Bezier curves
@@ -177,31 +166,31 @@ hl.animation({ leaf = "layersOut", enabled = true, speed = 3, bezier = "layerOut
 ------------------------------------------------------------------------------------------
 
 hl.config({
-  input = {
-    kb_layout = "no",
-    kb_variant = "",
-    kb_model = "",
-    kb_options = "grp:ctrl_space_toggle",
-    kb_rules = "",
-    accel_profile = "flat",
-    follow_mouse = 1,
-    sensitivity = 0.3,
-    repeat_rate = 50,
-    repeat_delay = 200,
-    touchpad = {
-      natural_scroll = false,
-    },
-  },
+	input = {
+		kb_layout = "no",
+		kb_variant = "",
+		kb_model = "",
+		kb_options = "grp:ctrl_space_toggle",
+		kb_rules = "",
+		accel_profile = "flat",
+		follow_mouse = 1,
+		sensitivity = 0.3,
+		repeat_rate = 50,
+		repeat_delay = 200,
+		touchpad = {
+			natural_scroll = false,
+		},
+	},
 
-  cursor = {
-    no_hardware_cursors = true,
-    hotspot_padding = 2,
-    no_warps = true,
-  },
+	cursor = {
+		no_hardware_cursors = true,
+		hotspot_padding = 2,
+		no_warps = true,
+	},
 
-  debug = {
-    damage_tracking = 1,
-  },
+	debug = {
+		damage_tracking = 1,
+	},
 })
 
 ------------------------------------------------------------------------------------------
