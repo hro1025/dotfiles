@@ -48,6 +48,9 @@ return {
           projects = {
             display = "full",
           },
+          explorer = {
+            hidden = true,
+          },
         },
       },
       notifier = {
