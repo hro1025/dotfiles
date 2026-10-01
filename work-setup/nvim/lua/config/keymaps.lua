@@ -24,10 +24,18 @@ local function resize(dir)
   end
 end
 
-vim.keymap.set({ "n", "t" }, "<A-H>", function() resize("h") end, { desc = "Move border left" })
-vim.keymap.set({ "n", "t" }, "<A-L>", function() resize("l") end, { desc = "Move border right" })
-vim.keymap.set({ "n", "t" }, "<A-J>", function() resize("j") end, { desc = "Move border down" })
-vim.keymap.set({ "n", "t" }, "<A-K>", function() resize("k") end, { desc = "Move border up" })
+vim.keymap.set({ "n", "t" }, "<A-H>", function()
+  resize("h")
+end, { desc = "Move border left" })
+vim.keymap.set({ "n", "t" }, "<A-L>", function()
+  resize("l")
+end, { desc = "Move border right" })
+vim.keymap.set({ "n", "t" }, "<A-J>", function()
+  resize("j")
+end, { desc = "Move border down" })
+vim.keymap.set({ "n", "t" }, "<A-K>", function()
+  resize("k")
+end, { desc = "Move border up" })
 
 -- Terminal
 -- Every shell started from Neovim inherits this: bar cursor at each prompt
@@ -78,3 +86,5 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     end, 100)
   end,
 })
+
+vim.keymap.del("n", "<leader>K")

@@ -77,6 +77,9 @@ hl.bind(mainMod .. " + K", hl.dsp.exec_cmd(killpanel))
 hl.bind(mainMod .. " + J", hl.dsp.exec_cmd(startpanel))
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd(hyprlock))
 
+-- Master layout: move the focused window into the center (master) spot
+hl.bind(mainMod .. " + Return", hl.dsp.layout("swapwithmaster"))
+
 -- Workspace navigation (ALT + 1..9)
 for i = 1, 9 do
   hl.bind("ALT + " .. i, hl.dsp.focus({ workspace = i }))
@@ -112,7 +115,7 @@ hl.config({
     },
     resize_on_border = false,
     allow_tearing = false,
-    layout = "dwindle",
+    layout = "master", -- was "dwindle"
   },
 
   decoration = {
@@ -135,9 +138,17 @@ hl.config({
     },
   },
 
+  -- Kept so switching back to dwindle later just means changing `layout`.
   dwindle = {
     force_split = 2,
     preserve_split = true,
+  },
+
+  master = {
+    orientation = "center", -- master area in the middle
+    new_status = "master", -- new windows open in the center
+    slave_count_for_center_master = 0, -- always center, even a single window
+    mfact = 0.5, -- center window takes half the screen width
   },
 
   opengl = {
