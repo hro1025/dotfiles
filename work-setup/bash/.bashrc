@@ -35,20 +35,24 @@ export LS_COLORS="di=38;5;75:ln=38;5;75:so=38;5;75:pi=38;5;75:ex=38;5;75:bd=38;5
 eval "$(ssh-agent -s)" >/dev/null
 ssh-add ~/.ssh/id_ed25519 2>/dev/null
 
-# End of regular user profile config
-export PATH="$PATH:/home/roan/.dotnet/tools"
+# ---------- PATH and tools ----------
+# .NET
+export DOTNET_ROOT="$HOME/.dotnet"
+export PATH="$PATH:$HOME/.dotnet:$HOME/.dotnet/tools"
+
+# npm global packages
 export PATH="$HOME/.npm-global/bin:$PATH"
 
-. "$HOME/.local/bin/env"
+# Bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 
-# Hermes Agent — ensure ~/.local/bin is on PATH
+# ~/.local/bin (uv env script + Hermes Agent)
+. "$HOME/.local/bin/env"
 export PATH="$HOME/.local/bin:$PATH"
-export DOTNET_ROOT=$HOME/.dotnet
-export PATH=$PATH:$HOME/.dotnet:$HOME/.dotnet/tools
-export DOTNET_ROOT=$HOME/.dotnet
-export PATH=$PATH:$HOME/.dotnet:$HOME/.dotnet/tools
-export DOTNET_ROOT=$HOME/.dotnet
-export PATH=$PATH:$HOME/.dotnet:$HOME/.dotnet/tools
+
+# ---------- Lua ----------
 export LUA_PATH='/usr/share/lua/5.5/?.lua;/usr/local/share/lua/5.5/?.lua;/usr/local/share/lua/5.5/?/init.lua;/usr/share/lua/5.5/?/init.lua;/usr/local/lib/lua/5.5/?.lua;/usr/local/lib/lua/5.5/?/init.lua;/usr/lib/lua/5.5/?.lua;/usr/lib/lua/5.5/?/init.lua;./?.lua;./?/init.lua;/home/roan/.luarocks/share/lua/5.5/?.lua;/home/roan/.luarocks/share/lua/5.5/?/init.lua'
 export LUA_CPATH='/usr/local/lib/lua/5.5/?.so;/usr/lib/lua/5.5/?.so;/usr/local/lib/lua/5.5/loadall.so;/usr/lib/lua/5.5/loadall.so;./?.so;/home/roan/.luarocks/lib/lua/5.5/?.so'
-export PATH='/home/roan/.luarocks/bin:/home/roan/.local/bin:/home/roan/.npm-global/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/var/lib/flatpak/exports/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/roan/.dotnet/tools:/home/roan/.dotnet:/home/roan/.local/share/JetBrains/Toolbox/scripts'
+
+# End of regular user profile config
