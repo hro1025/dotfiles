@@ -44,9 +44,6 @@ local fileManager = "nemo"
 local menu = "rofi -show drun"
 local powermenu = "bash ~/.config/rofi/powermenu.sh"
 local screenshot = "hyprshot -m region -m active --clipboard-only"
-local lock = "hyprlock"
-local killpanel = "pkill quickshell"
-local startpanel = "quickshell"
 
 ------------------------------------------------------------------------------------------
 --                                   KEYBINDINGS
@@ -64,15 +61,14 @@ hl.bind("ALT + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind("ALT + D", hl.dsp.exec_cmd(menu))
 hl.bind("ALT + Delete", hl.dsp.exec_cmd(powermenu))
 hl.bind("ALT + F1", hl.dsp.exec_cmd(screenshot))
-hl.bind(mainMod .. " + K", hl.dsp.exec_cmd(killpanel))
-hl.bind(mainMod .. " + J", hl.dsp.exec_cmd(startpanel))
-hl.bind(mainMod .. " + L", hl.dsp.exec_cmd(lock))
+hl.bind("SUPER + B", hl.dsp.exec_cmd("pkill waybar || waybar"))
+hl.bind("SUPER + Escape", hl.dsp.exec_cmd("hyprlock"))
 
 -- Focus
-hl.bind(mainMod .. " + A", hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + D", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + W", hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + S", hl.dsp.focus({ direction = "down" }))
+hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
+hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
+hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
+hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
 
 -- Workspaces (ALT + 1..9)
 for i = 1, 9 do
@@ -99,7 +95,7 @@ hl.config({
 	general = {
 		gaps_in = 0,
 		gaps_out = 0,
-		border_size = 1,
+		border_size = 2,
 		col = {
 			active_border = { colors = { "rgba(89b4faff)", "rgba(89b4faff)" }, angle = 45 },
 			inactive_border = "rgba(00000000)",

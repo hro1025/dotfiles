@@ -1,0 +1,18 @@
+" Start clean so the file is the single source of truth
+sanitise tridactyllocal tridactylsync
+
+" Edit text fields in Neovim with Ctrl+I
+set editorcmd alacritty -e nvim %f
+
+" Smooth scrolling and a quieter UI
+set smoothscroll true
+guiset_quiet gui none
+guiset_quiet tabs always
+
+" Tab navigation like buffers
+bind J tabprev
+bind K tabnext
+
+" Search engine
+set searchurls.brave https://search.brave.com/search?q=
+set searchengine brave
