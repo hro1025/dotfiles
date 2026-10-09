@@ -40,7 +40,7 @@ hl.workspace_rule({ workspace = "1", monitor = "eDP-1" })
 ------------------------------------------------------------------------------------------
 
 local terminal = "alacritty"
-local fileManager = "nemo"
+local fileManager = "alacritty -e yazi"
 local menu = "rofi -show drun"
 local powermenu = "bash ~/.config/rofi/powermenu.sh"
 local screenshot = "hyprshot -m region -m active --clipboard-only"
@@ -69,6 +69,18 @@ hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
 hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
+
+-- Swap window with its neighbour (left window <-> right window)
+hl.bind(mainMod .. " + SHIFT + A", hl.dsp.window.swap({ direction = "left" }))
+hl.bind(mainMod .. " + SHIFT + D", hl.dsp.window.swap({ direction = "right" }))
+hl.bind(mainMod .. " + SHIFT + W", hl.dsp.window.swap({ direction = "up" }))
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.swap({ direction = "down" }))
+
+-- Resize active window (hold to keep resizing)
+hl.bind(mainMod .. " + CTRL + A", hl.dsp.window.resize({ x = -40, y = 0, relative = true }), { repeating = true })
+hl.bind(mainMod .. " + CTRL + D", hl.dsp.window.resize({ x = 40, y = 0, relative = true }), { repeating = true })
+hl.bind(mainMod .. " + CTRL + W", hl.dsp.window.resize({ x = 0, y = -40, relative = true }), { repeating = true })
+hl.bind(mainMod .. " + CTRL + S", hl.dsp.window.resize({ x = 0, y = 40, relative = true }), { repeating = true })
 
 -- Workspaces (ALT + 1..9)
 for i = 1, 9 do
