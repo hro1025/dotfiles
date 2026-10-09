@@ -78,7 +78,6 @@ hl.bind("ALT + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind("ALT + D", hl.dsp.exec_cmd(menu))
 hl.bind("ALT + Delete", hl.dsp.exec_cmd(powermenu))
 hl.bind("ALT + F1", hl.dsp.exec_cmd(screenshot))
-hl.bind("SUPER + B", hl.dsp.exec_cmd("pkill waybar || waybar"))
 hl.bind("SUPER + Escape", hl.dsp.exec_cmd("hyprlock"))
 
 -- Focus
