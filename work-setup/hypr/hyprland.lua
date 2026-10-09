@@ -36,6 +36,23 @@ hl.monitor({ output = "HDMI-A-1", mode = "3840x1080@60", position = "0x0", scale
 hl.workspace_rule({ workspace = "1", monitor = "eDP-1" })
 
 ------------------------------------------------------------------------------------------
+--                                 LAPTOP SCREEN
+------------------------------------------------------------------------------------------
+
+-- Laptop screen off by default (overrides the eDP-1 line above)
+hl.monitor({ output = "eDP-1", disabled = true })
+
+-- SUPER + SHIFT + M toggles the laptop screen (in case the big screen isn't plugged in)
+local function toggleLaptop()
+	if hl.get_monitor("eDP-1") ~= nil then
+		hl.monitor({ output = "eDP-1", disabled = true })
+	else
+		hl.monitor({ output = "eDP-1", mode = "1920x1080@60", position = "3840x0", scale = 1, disabled = false })
+	end
+end
+hl.bind("SUPER + SHIFT + M", toggleLaptop)
+
+------------------------------------------------------------------------------------------
 --                                   MY PROGRAMS
 ------------------------------------------------------------------------------------------
 
@@ -168,11 +185,5 @@ hl.config({
 		sensitivity = 0.3,
 		repeat_rate = 50,
 		repeat_delay = 200,
-	},
-
-	cursor = {
-		no_hardware_cursors = true,
-		hotspot_padding = 2,
-		no_warps = true,
 	},
 })

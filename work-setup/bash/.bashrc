@@ -54,5 +54,5 @@ export PATH="$HOME/.local/bin:$PATH"
 # ---------- Lua ----------
 export LUA_PATH='/usr/share/lua/5.5/?.lua;/usr/local/share/lua/5.5/?.lua;/usr/local/share/lua/5.5/?/init.lua;/usr/share/lua/5.5/?/init.lua;/usr/local/lib/lua/5.5/?.lua;/usr/local/lib/lua/5.5/?/init.lua;/usr/lib/lua/5.5/?.lua;/usr/lib/lua/5.5/?/init.lua;./?.lua;./?/init.lua;/home/roan/.luarocks/share/lua/5.5/?.lua;/home/roan/.luarocks/share/lua/5.5/?/init.lua'
 export LUA_CPATH='/usr/local/lib/lua/5.5/?.so;/usr/lib/lua/5.5/?.so;/usr/local/lib/lua/5.5/loadall.so;/usr/lib/lua/5.5/loadall.so;./?.so;/home/roan/.luarocks/lib/lua/5.5/?.so'
-
+export CLAUDE_CODE_OAUTH_TOKEN="WDCxzUL4XuMB8jKQygaPPFskYfy4wn239h4qqLK2C7n5vZxf#SS8qYNCqIdkMwaXSE3_k6VlvDkuIoo-Xb3zikmipaqU"
 # End of regular user profile config
